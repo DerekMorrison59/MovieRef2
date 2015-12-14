@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <ImageView
+        android:layout_width="fill_parent"
+        android:id="@+id/list_item_movie_poster_imageview"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+        android:contentDescription="movie poster"
+        android:layout_height="278dp"
+        android:background="@color/bright_foreground_material_dark"
+        android:layout_margin="8dp" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:id="@+id/list_item_favorite_imageview"
+        android:scaleType="fitEnd"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginTop="0dp"
+        android:paddingBottom="8dp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Movie Title"
+        android:id="@+id/movie_title_textview"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentTop="true"
+        android:textAlignment="center"
+        android:textColor="@color/primary_text_default_material_light"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Image Not Available"
+        android:id="@+id/msgTextView"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_alignParentBottom="false"
+        android:textAlignment="center"
+        android:textColor="@color/primary_text_default_material_light"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp" />
+</RelativeLayout>

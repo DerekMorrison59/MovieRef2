@@ -263,7 +263,6 @@ public class FetchMoviesTask extends AsyncTask<String, Void, MovieData[]> {
             // reset the flag to avoid unnecessary updates
             Globals.getInstance().setRefreshNeeded(false);
 
-
             String sort_by = "1";
             sort_by = Utility.GetSortOrder(mFragActivity.getApplicationContext());
 

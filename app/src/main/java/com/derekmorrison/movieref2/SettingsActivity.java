@@ -85,6 +85,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         // remember that the preferences were changed and TMDB must be called again
         Globals.getInstance().setRefreshNeeded(true);
         Globals.getInstance().setIsNewList(true);
+
+            boolean favSelected = false;
+            if (stringValue.equals("2")) {
+                favSelected = true;
+            }
+            Globals.getInstance().setShowFavorites(favSelected);
         return true;
         }
     };

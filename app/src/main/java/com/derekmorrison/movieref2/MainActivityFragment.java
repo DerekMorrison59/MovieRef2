@@ -190,10 +190,7 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
     public void onStart() {
         super.onStart();
 
-        // The SettingsActivity will set a Global boolean whenever a preference is changed
-        //if (Globals.getInstance().getRefreshNeeded() || Globals.getInstance().getBadApiKey()
-        //        || Globals.getInstance().getIsNewList() || Globals.getInstance().getMnualRefresh())
-
+        // there are several reasons why it might be time to update the database from TMDB
         if (Globals.getInstance().anyReasonToUpdate()){
             updateMovieList();
             updateLoader();
@@ -250,11 +247,12 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
         // special case - the current sort type (display type) is favorites
         // all the movie data needed is already in the database
         if (sort_by.equals("2")) {
+            Globals.getInstance().setManualRefresh(false);
             return false;
         }
 
         // special case - user has requested a refresh
-        if (Globals.getInstance().getMnualRefresh()) {
+        if (Globals.getInstance().getManualRefresh()) {
             Globals.getInstance().setManualRefresh(false);
             return _RefreshNeeded;
         }
@@ -410,10 +408,9 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
             }
 
             // show all the movies from the database for this 'sort type'
-            // this includes movies that are in both lists and
-            // favorites that are no longer in the top 20 returned from TMDB
-            movieColumns = movieSortColumn + "=?";
-            movieSettings = new String[] {"true"};
+            // that are recent arrivals
+            movieColumns = movieSortColumn + "=? AND " + MovieContract.MovieEntry.COLUMN_RECENT_ARRIVAL + "=?";
+            movieSettings = new String[] {"true", "true"};
         }
 
         return new CursorLoader(getActivity(),

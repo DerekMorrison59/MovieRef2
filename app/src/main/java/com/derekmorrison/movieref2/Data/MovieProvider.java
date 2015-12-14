@@ -183,9 +183,15 @@ public class MovieProvider extends ContentProvider {
         String[] movieIds = {mId};
 
         Cursor c = db.query(MovieContract.MovieEntry.TABLE_NAME, null, movieColumns, movieIds, null, null,null);
-        int retCount = c.getCount();
-        c.moveToFirst();
+        int retCount = 0;
 
+        // make sure a cursor was returned
+        if (c != null) {
+            retCount = c.getCount();
+            c.moveToFirst();
+        }
+
+        // make sure there is at least one record in the cursor
         if (retCount > 0){
             dbId = c.getLong(0);
         }

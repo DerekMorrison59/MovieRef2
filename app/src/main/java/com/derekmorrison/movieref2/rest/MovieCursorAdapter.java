@@ -34,13 +34,11 @@ public class MovieCursorAdapter extends CursorRecyclerViewAdapter<MovieCursorAda
     Context mContext;
     FragmentActivity mFragmentActivity;
     ViewHolder mVh;
-    //boolean veryFirstTime;
 
     public MovieCursorAdapter(Context context, Cursor cursor){
         super(context, cursor);
         mFragmentActivity = (FragmentActivity) context;
         mContext = context;
-        //veryFirstTime = true;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -72,14 +70,12 @@ public class MovieCursorAdapter extends CursorRecyclerViewAdapter<MovieCursorAda
         String movieID = cursor.getString(MainActivityFragment.COL_MOVIE_ID);
         String posterPath = cursor.getString(MainActivityFragment.COL_POSTER_PATH);
 
-//        if (Globals.getInstance().getTwoPane() && veryFirstTime) {
-//            veryFirstTime = false;
-//            setDetailMovieID(movieID);
-//        }
-
         if (Globals.getInstance().getTwoPane() && Globals.getInstance().getIsNewList()) {
-            Globals.getInstance().setIsNewList(false);
             setDetailMovieID(movieID);
+        }
+
+        if (Globals.getInstance().getIsNewList()) {
+            Globals.getInstance().setIsNewList(false);
         }
 
         if (Utility.isNetworkAvailable(mContext) == false){

@@ -39,20 +39,25 @@ public class Utility {
  *  networks of the same type. Use getAllNetworks() and getNetworkInfo(android.net.Network) instead.
  */
     public static boolean isNetworkAvailable(Context context) {
-        ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivity = null;
+        boolean isAvailable = false;
 
-        if (connectivity == null) {
-            return false;
-        } else {
+        if (context != null){
+            connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        }
+
+        if (connectivity != null) {
             NetworkInfo[] info = connectivity.getAllNetworkInfo();
             if (info != null) {
                 for (int i = 0; i < info.length; i++) {
                     if (info[i].getState() == NetworkInfo.State.CONNECTED) {
-                        return true;
+                        isAvailable = true;
                     }
                 }
             }
         }
-        return false;
+        // save the results for use elsewhere
+        Globals.getInstance().setDataConnection(isAvailable);
+        return isAvailable;
     }
 }

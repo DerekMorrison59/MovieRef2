@@ -42,7 +42,7 @@ public class Globals{
     public void setManualRefresh(boolean b){
         this.manualRefresh=b;
     }
-    public boolean getMnualRefresh(){
+    public boolean getManualRefresh(){
         return this.manualRefresh;
     }
 
